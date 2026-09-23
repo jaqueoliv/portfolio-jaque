@@ -791,3 +791,14 @@ a:hover { opacity: 0.8; }
   .reveal { opacity: 1; }
   .reveal-visible { animation: none; }
 }
+/* ============================================
+   EFEITO: inverter as cores do ícone no hover
+   (a cor do ícone e a do quadrado "trocam")
+   ============================================ */
+.process-icon-img {
+    transition: filter 0.35s ease;
+}
+
+.process-icon-img:hover {
+    filter: invert(1);
+}
