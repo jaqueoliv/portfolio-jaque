@@ -221,5 +221,44 @@
         <a href="https://www.linkedin.com/in/jaqueline-rodrigues-de-oliveira/" target="_blank">LINKEDIN</a>
     </div>
 </footer>
-</body>
+<script>
+// Animação suave ao rolar: seções e cards "surgem"
+// quando a pessoa rola a página.
+
+const alvos = document.querySelectorAll(
+  '.hero-inner, .process-intro, .process-card, .projects-section h2, .section-subtitle, .project-card, .about-content, .contact-container-elegant'
+);
+
+alvos.forEach(el => el.classList.add('reveal'));
+
+// Cards dos projetos aparecem em cascata (um de leve após o outro)
+document.querySelectorAll('.project-card').forEach((card, i) => {
+  card.style.animationDelay = (i * 0.1) + 's';
+});
+
+// Se a pessoa prefere menos movimento, não anima (acessibilidade)
+const prefereMenosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefereMenosMovimento) {
+  alvos.forEach(el => el.classList.remove('reveal'));
+} else {
+  const observer = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        const el = entrada.target;
+        el.classList.add('reveal-visible');
+        el.addEventListener('animationend', function aoTerminar() {
+          el.classList.remove('reveal-visible');
+          el.classList.add('revealed');
+          el.style.animationDelay = '0s';
+          el.removeEventListener('animationend', aoTerminar);
+        });
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  alvos.forEach(el => observer.observe(el));
+}
+</script></body>
 </html>

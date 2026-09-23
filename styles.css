@@ -718,10 +718,6 @@ a:hover { opacity: 0.8; }
         border-radius: 50%;          /* Foto arredondada */
         object-fit: cover;
         object-position: center;     /* Rosto centralizado, sem corte feio */
-        border: 1px solid rgba(255, 255, 255, 0.35); /* Círculo bem suave, quase difuso */
-        box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.35), /* Anel branco desfocado (halo suave) */
-                    0 0 28px 10px rgba(255, 255, 255, 0.12), /* Difusão extra pra suavizar ainda mais */
-                    0 8px 24px rgba(0, 0, 0, 0.30);          /* Sombra leve para a foto não flutuar */
     }
 }
 
@@ -758,4 +754,40 @@ a:hover { opacity: 0.8; }
     display: inline-block !important;
     direction: ltr !important;       /* leitura esquerda → direita */
     text-align: left !important;
+}
+/* ============================================
+   ANIMAÇÃO DE ENTRADA AO ROLAR (reveal)
+   Elementos surgem subindo suavemente quando
+   entram na tela. Respeita acessibilidade.
+   ============================================ */
+.reveal {
+  opacity: 0;
+}
+
+.reveal-visible {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estado final: solta o elemento da animação
+   (o hover dos cards continua funcionando depois) */
+.revealed {
+  opacity: 1;
+}
+
+/* Acessibilidade: quem prefere menos movimento
+   no sistema operacional não vê animação nenhuma */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; }
+  .reveal-visible { animation: none; }
 }
