@@ -800,5 +800,4 @@ a:hover { opacity: 0.8; }
 }
 
 .process-icon-img:hover {
-    filter: invert(1);
-}
+        filter: invert(1) hue-rotate(180deg);
