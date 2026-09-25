@@ -227,7 +227,7 @@ footer {
 }
 
 .hero__tagline {
-  margin-top: 21px;
+  margin-top: 32px;
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
@@ -245,7 +245,7 @@ footer {
 }
 
 .btn--hero {
-  margin-top: 75px;
+  margin-top: 32px;
   width: 311px;
   height: 53px;
   background: var(--gold);
@@ -293,7 +293,7 @@ footer {
 }
 
 .hero__sub {
-  margin-top: 38px;
+  margin-top: 32px;
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: 24px;
