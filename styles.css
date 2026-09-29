@@ -710,6 +710,21 @@ a:hover { opacity: 0.8; }
         justify-content: center;     /* Imagem centralizada em vez de à direita */
         order: -1;                   /* Coloca a foto antes do texto */
         margin-bottom: 20px;         /* Espaço entre foto e texto */
+        position: relative;          /* Âncora pro círculo de fundo */
+    }
+
+    /* Círculo rosa escuro atrás da foto (somente no mobile) */
+    .hero-image::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 228px;                /* 180px da foto + 24px de contorno */
+        height: 228px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: var(--pink-secondary);
+        z-index: 0;
     }
 
     .hero-image img {
@@ -718,6 +733,8 @@ a:hover { opacity: 0.8; }
         border-radius: 50%;          /* Foto arredondada */
         object-fit: cover;
         object-position: center;     /* Rosto centralizado, sem corte feio */
+        position: relative;          /* Foto acima do círculo de fundo */
+        z-index: 1;
     }
 }
 
