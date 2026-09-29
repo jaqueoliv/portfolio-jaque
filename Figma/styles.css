@@ -101,9 +101,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 36px 139px 0;
+  width: 100%; /* estica até a borda da tela, como o hero, pra manter o alinhamento à esquerda */
+  /* 190px à esquerda = mesma margem do texto do hero; padding vertical simétrico =
+     conteúdo (nome + links) centralizado no meio do retângulo da nav */
+  padding: 14px 190px;
+  /* verde suave com transparência: visível, mas não opaco */
+  background: rgba(46, 80, 55, 0.2);
 }
 
 .brand {
@@ -116,13 +119,6 @@ footer {
   font-size: 16px;
   line-height: 26px;
   color: #fff;
-}
-
-.brand__role {
-  font-family: var(--font-inter);
-  font-size: 14px;
-  line-height: 26px;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .main-nav {
@@ -153,12 +149,15 @@ footer {
 }
 
 .pill--ghost {
-  background: rgba(218, 218, 218, 0.05);
-  padding: 10px 50px;
+  /* mesmo tom amarelo claro do botão "Agendar consulta" */
+  background: var(--gold);
+  color: var(--ink); /* texto escuro pra legibilidade sobre o dourado */
+  /* padding horizontal menor: o gap (50px) passa a ser visualmente uniforme entre todos os itens, inclusive o botão */
+  padding: 10px 24px;
 }
 
 .pill--ghost:hover {
-  background: rgba(218, 218, 218, 0.12);
+  background: #e2d3bd;
   opacity: 1;
 }
 
@@ -166,28 +165,19 @@ footer {
 
 .hero {
   position: relative;
-  height: 1142px;
   overflow: hidden;
-  display: flex;
+  display: block;
 }
 
 .hero__bg {
-  position: absolute;
-  top: 118px;
-  left: 0;
-  right: 0;
-  height: 1024px;
+  display: block;
   width: 100%;
-  object-fit: cover;
-  object-position: bottom center;
+  height: auto;
 }
 
 .hero__overlay {
   position: absolute;
-  top: 118px;
-  left: 0;
-  right: 0;
-  height: 1024px;
+  inset: 0;
   background: linear-gradient(
     270deg,
     rgba(217, 217, 217, 0) 0%,
@@ -204,16 +194,21 @@ footer {
   position: absolute;
   left: 0;
   right: 0;
-  top: 942px;
+  top: auto;
+  bottom: 0;
   height: 184px;
   background: linear-gradient(to bottom, rgba(254, 248, 240, 0) 0%, var(--cream) 100%);
   pointer-events: none;
 }
 
 .hero__content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  padding: 389px 0 0 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 0 40px 190px;
   max-width: 900px;
 }
 
@@ -897,7 +892,11 @@ footer {
   }
 
   .hero__content {
-    padding-top: 200px;
+    position: relative;
+    inset: auto;
+    display: block;
+    padding: 48px 48px 96px;
+    max-width: none;
   }
 
   .hero__title {
@@ -943,6 +942,8 @@ footer {
     align-items: flex-start;
     gap: 16px;
     padding-top: 24px;
+    padding-bottom: 24px; /* mantém o conteúdo centralizado na vertical também no mobile */
+    padding-left: 32px; /* acompanha a margem esquerda do texto do hero no mobile */
   }
 
   .main-nav {
@@ -954,13 +955,8 @@ footer {
     padding: 10px 24px;
   }
 
-  .hero {
-    height: auto;
-    min-height: 640px;
-  }
-
   .hero__content {
-    padding: 160px 32px 120px;
+    padding: 40px 32px 96px;
   }
 
   .hero__title {
